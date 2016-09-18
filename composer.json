@@ -21,7 +21,7 @@
             "src/"
         ],
         "files": [
-            "src/Filter.php"
+            "src/functions.php"
         ],
         "psr-4": {
             "Dgame\\Filter\\": "src/"

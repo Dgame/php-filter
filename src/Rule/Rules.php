@@ -25,7 +25,7 @@ final class Rules
      *
      * @return Rules
      */
-    public static function Create(array $rules) : Rules
+    public static function Create(array $rules): Rules
     {
         return new self($rules);
     }
@@ -60,7 +60,7 @@ final class Rules
      *
      * @return array
      */
-    public function apply(array $data) : array
+    public function apply(array $data): array
     {
         foreach ($data as $key => $value) {
             if (array_key_exists($key, $this->rules) && !$this->rules[$key]->verify($value)) {

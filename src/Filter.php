@@ -28,7 +28,7 @@ final class Filter
     /**
      * @return array
      */
-    public function getData() : array
+    public function getData(): array
     {
         return $this->data;
     }
@@ -38,7 +38,7 @@ final class Filter
      *
      * @return Filter
      */
-    public function map(callable $callback) : Filter
+    public function map(callable $callback): Filter
     {
         $this->data = array_map($callback, $this->data);
 
@@ -50,7 +50,7 @@ final class Filter
      *
      * @return Filter
      */
-    public function apply(array $callbacks) : Filter
+    public function apply(array $callbacks): Filter
     {
         foreach ($callbacks as $key => $callback) {
             if (array_key_exists($key, $this->data)) {
@@ -66,7 +66,7 @@ final class Filter
      *
      * @return Filter
      */
-    public function allowOnly(array $keys) : Filter
+    public function allowOnly(array $keys): Filter
     {
         return $this->filterBy(function($key) use ($keys) {
             return in_array($key, $keys);
@@ -80,7 +80,7 @@ final class Filter
      *
      * @return Filter
      */
-    public function applyDefaults(array $defaults) : Filter
+    public function applyDefaults(array $defaults): Filter
     {
         foreach ($defaults as $key => $value) {
             if (!array_key_exists($key, $this->data) || empty($this->data[$key])) {
@@ -107,7 +107,7 @@ final class Filter
      *
      * @return Filter
      */
-    public function filterBy(callable $callback, int $flag = ARRAY_FILTER_USE_BOTH) : Filter
+    public function filterBy(callable $callback, int $flag = ARRAY_FILTER_USE_BOTH): Filter
     {
         $this->data = array_filter($this->data, $callback, $flag);
 
@@ -119,7 +119,7 @@ final class Filter
      *
      * @return Filter
      */
-    public function filterByRules(array $rules) : Filter
+    public function filterByRules(array $rules): Filter
     {
         $this->data = Rules::Create($rules)->apply($this->data);
 
@@ -131,7 +131,7 @@ final class Filter
      *
      * @return Filter
      */
-    public function filterByPattern(array $matches) : Filter
+    public function filterByPattern(array $matches): Filter
     {
         foreach ($matches as $key => $pattern) {
             if (array_key_exists($key, $this->data) && !preg_match($pattern, $this->data[$key])) {
@@ -141,14 +141,4 @@ final class Filter
 
         return $this;
     }
-}
-
-/**
- * @param array $data
- *
- * @return Filter
- */
-function prepare(array $data) : Filter
-{
-    return new Filter($data);
 }

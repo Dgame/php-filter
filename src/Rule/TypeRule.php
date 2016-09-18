@@ -21,9 +21,9 @@ final class TypeRule implements Rule
     ];
 
     /**
-     * @var callable|null
+     * @var callable
      */
-    private $function = null;
+    private $function;
 
     /**
      * TypeRule constructor.
@@ -49,7 +49,7 @@ final class TypeRule implements Rule
      *
      * @return bool
      */
-    public function verify($value) : bool
+    public function verify($value): bool
     {
         return call_user_func($this->function, $value);
     }

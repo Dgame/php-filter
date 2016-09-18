@@ -3,7 +3,6 @@
 namespace Dgame\Filter\Rule;
 
 use Dgame\Filter\Exception\InvalidRangeException;
-use phpDocumentor\Reflection\Type;
 
 /**
  * Class RangeRule
@@ -12,9 +11,9 @@ use phpDocumentor\Reflection\Type;
 final class RangeRule implements Rule
 {
     /**
-     * @var null|TypeRule
+     * @var TypeRule
      */
-    private $rule = null;
+    private $rule;
     /**
      * @var int
      */
@@ -44,7 +43,7 @@ final class RangeRule implements Rule
      * @return bool
      * @throws InvalidRangeException
      */
-    public function verify($value) : bool
+    public function verify($value): bool
     {
         if (!$this->rule->verify($value)) {
             return false;

@@ -9,13 +9,13 @@ namespace Dgame\Filter\Rule;
 final class MatchRule implements Rule
 {
     /**
-     * @var null|TypeRule
+     * @var TypeRule
      */
-    private $rule = null;
+    private $rule;
     /**
-     * @var null|string
+     * @var string
      */
-    private $pattern = null;
+    private $pattern;
 
     /**
      * MatchRule constructor.
@@ -34,7 +34,7 @@ final class MatchRule implements Rule
      *
      * @return bool
      */
-    public function verify($value) : bool
+    public function verify($value): bool
     {
         return $this->rule->verify($value) && preg_match($this->pattern, $value) === 1;
     }

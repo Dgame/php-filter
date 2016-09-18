@@ -14,7 +14,7 @@ final class RuleFactory
      *
      * @return Rule
      */
-    public static function Make(string $class, array $matches) : Rule
+    public static function Make(string $class, array $matches): Rule
     {
         array_shift($matches); // $matches[0] contains the whole string; we don't need that
 
@@ -26,7 +26,9 @@ final class RuleFactory
         array_unshift($matches, $rule);
 
         $ref = new \ReflectionClass($class);
+        /** @var Rule $rule */
+        $rule = $ref->newInstanceArgs($matches);
 
-        return $ref->newInstanceArgs($matches);
+        return $rule;
     }
 }

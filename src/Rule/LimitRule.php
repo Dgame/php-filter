@@ -11,9 +11,9 @@ use Dgame\Filter\Exception\InvalidLimitException;
 final class LimitRule implements Rule
 {
     /**
-     * @var null|TypeRule
+     * @var TypeRule
      */
-    private $rule = null;
+    private $rule;
     /**
      * @var int
      */
@@ -37,16 +37,14 @@ final class LimitRule implements Rule
      * @return bool
      * @throws InvalidLimitException
      */
-    public function verify($value) : bool
+    public function verify($value): bool
     {
         if (!$this->rule->verify($value)) {
             return false;
         }
-        
-        if (is_string($value)) {
-            $len = strlen($value);
 
-            return $len === $this->limit;
+        if (is_string($value)) {
+            return strlen($value) === $this->limit;
         }
 
         if (is_numeric($value)) {

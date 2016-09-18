@@ -13,5 +13,5 @@ interface Rule
      *
      * @return bool
      */
-    public function verify($value) : bool;
+    public function verify($value): bool;
 }
